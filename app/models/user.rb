@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   validates :email, presence: true, length: { minimum: 2 } 
   validates :password, presence: true, length: { minimum: 6 } 
+  validates :token, uniqueness: true
   validate :set_token
 
   def set_token
