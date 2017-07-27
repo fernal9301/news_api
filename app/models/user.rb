@@ -5,6 +5,9 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 } 
   validates :token, uniqueness: true
   validate :set_token
+  
+  has_many :user_news
+  has_many :news, through: :user_news
 
   def set_token
     #self.token = Digest::SHA2.hexdigest(email + password)
