@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validate :set_token
   
   has_many :user_news
-  has_many :news, through: :user_news
+  has_many :news, through: :user_news, dependent: :destroy
 
   def set_token
     #self.token = Digest::SHA2.hexdigest(email + password)

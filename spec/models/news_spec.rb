@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe News, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context '#validations check' do 
+    it { should validate_presence_of :title } 
+    it { should validate_presence_of :content } 
+    it { should have_many(:users).dependent(:destroy) }
+  end
 end

@@ -11,8 +11,12 @@ class NewsController < ApplicationController
   end
 
   def create
-		@user.news.create!(news_params)
-    render json: @user, status: :created
+		news = @user.news.create!(news_params)
+    if news.save
+      render json: news, status: :created
+    else
+      render json: news, status: :unprocessable_entity
+    end
   end
 
   def update
